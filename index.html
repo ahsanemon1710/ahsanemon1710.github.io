@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #070b14;
-            --bg-secondary: #0d1424;
-            --card-bg: #111b2e;
-            --card-hover: #162238;
+            --bg-primary: #050913;
+            --bg-secondary: #0b1222;
+            --card-bg: rgba(14, 23, 41, 0.84);
+            --card-hover: rgba(20, 32, 56, 0.94);
             --accent: #00d2ff;
             --accent-secondary: #38bdf8;
-            --accent-glow: rgba(0, 210, 255, 0.22);
+            --accent-purple: #818cf8;
+            --accent-glow: rgba(0, 210, 255, 0.25);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --border-color: rgba(148, 163, 184, 0.16);
@@ -34,9 +35,25 @@
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.65;
+            position: relative;
+            overflow-x: hidden;
             background-image:
-                radial-gradient(circle at 15% 15%, rgba(0, 210, 255, 0.08), transparent 35%),
-                radial-gradient(circle at 85% 25%, rgba(56, 189, 248, 0.06), transparent 35%);
+                radial-gradient(ellipse 65% 45% at 15% 10%, rgba(0, 210, 255, 0.14), transparent 65%),
+                radial-gradient(ellipse 55% 40% at 88% 18%, rgba(129, 140, 248, 0.12), transparent 65%),
+                radial-gradient(ellipse 60% 45% at 50% 88%, rgba(56, 189, 248, 0.09), transparent 70%),
+                linear-gradient(to right, rgba(148, 163, 184, 0.045) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
+            background-size: auto, auto, auto, 44px 44px, 44px 44px;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% 28%, rgba(0, 210, 255, 0.06), transparent 55%);
+            z-index: -1;
         }
 
         /* Navbar */
@@ -44,14 +61,15 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(7, 11, 20, 0.88);
-            backdrop-filter: blur(14px);
+            background: rgba(5, 9, 19, 0.82);
+            backdrop-filter: blur(16px);
             padding: 1rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
         }
 
         .logo {
@@ -95,24 +113,27 @@
             justify-content: center;
             padding: 7rem 6% 3.5rem;
             text-align: center;
+            position: relative;
         }
 
         .hero-content {
             max-width: 820px;
+            position: relative;
         }
 
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.4rem 1rem;
+            padding: 0.42rem 1.05rem;
             border-radius: 999px;
-            background: rgba(0, 210, 255, 0.1);
-            border: 1px solid rgba(0, 210, 255, 0.3);
+            background: rgba(0, 210, 255, 0.11);
+            border: 1px solid rgba(0, 210, 255, 0.32);
             color: var(--accent);
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
         }
 
         .profile-img {
@@ -123,7 +144,7 @@
             border: 3px solid var(--accent);
             margin: 0 auto 1.4rem;
             display: block;
-            box-shadow: 0 0 32px var(--accent-glow);
+            box-shadow: 0 0 38px var(--accent-glow), 0 0 0 8px rgba(0, 210, 255, 0.08);
         }
 
         .hero h1 {
@@ -179,24 +200,23 @@
         }
 
         .btn-primary {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
             color: #050912;
         }
 
         .btn-primary:hover {
-            background: var(--accent-secondary);
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px var(--accent-glow);
+            box-shadow: 0 12px 28px var(--accent-glow);
         }
 
         .btn-outline {
-            background: transparent;
+            background: rgba(14, 23, 41, 0.65);
             border: 1px solid rgba(0, 210, 255, 0.45);
             color: var(--accent);
         }
 
         .btn-outline:hover {
-            background: rgba(0, 210, 255, 0.1);
+            background: rgba(0, 210, 255, 0.12);
             transform: translateY(-2px);
         }
 
@@ -233,7 +253,7 @@
             display: block;
             width: 58px;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent), var(--accent-purple));
             margin: 0.75rem auto 0;
             border-radius: 2px;
         }
@@ -247,19 +267,22 @@
 
         .card {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 14px;
             padding: 1.75rem;
-            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: rgba(0, 210, 255, 0.45);
+            border-color: rgba(0, 210, 255, 0.48);
             background: var(--card-hover);
+            box-shadow: 0 16px 36px rgba(0, 210, 255, 0.1);
         }
 
         .card-top-meta {
@@ -360,6 +383,7 @@
         .upload-panel {
             margin-top: 2.5rem;
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px dashed rgba(0, 210, 255, 0.45);
             border-radius: 14px;
             padding: 1.75rem;
@@ -412,6 +436,7 @@
 
         .skill-tag {
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
             border: 1px solid var(--border-color);
             padding: 0.65rem 1.25rem;
             border-radius: 999px;
@@ -430,12 +455,14 @@
         /* Contact & Footer */
         .contact-box {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 2.5rem;
             text-align: center;
             max-width: 720px;
             margin: 0 auto;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
         }
 
         .social-links {
@@ -460,6 +487,7 @@
             text-align: center;
             padding: 2rem 6%;
             border-top: 1px solid var(--border-color);
+            background: rgba(5, 9, 19, 0.72);
             color: var(--text-secondary);
             font-size: 0.9rem;
             margin-top: 3rem;
@@ -686,7 +714,7 @@
                 <div>
                     <h3><i class="fas fa-file-circle-plus" style="color: var(--accent);"></i> Add / Preview Certificate</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem;">
-                        Select a certificate image or PDF preview from your device to view it in this segment right away.
+                        Select a certificate image from your device to view it in this segment right away.
                     </p>
                 </div>
             </div>
