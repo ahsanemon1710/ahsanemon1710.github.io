@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --card-bg: #111827;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --accent: #00f2fe;
-            --accent-hover: #4facfe;
-            --border-color: #1f2937;
+            --bg-primary: #0a0f1c;
+            --bg-secondary: #111827;
+            --card-bg: #1a2234;
+            --accent: #00d2ff;
+            --accent-hover: #00a8cc;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --border-color: #2d3748;
         }
 
         * {
@@ -25,146 +26,166 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.6;
         }
 
         /* Navbar */
-        header {
+        nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(11, 15, 25, 0.9);
+            background: rgba(10, 15, 28, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
             padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 700;
             color: var(--accent);
             text-decoration: none;
-            letter-spacing: 1px;
         }
 
-        nav ul {
-            list-style: none;
+        .nav-links {
             display: flex;
             gap: 1.5rem;
+            list-style: none;
         }
 
-        nav a {
-            color: var(--text-main);
+        .nav-links a {
+            color: var(--text-primary);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-weight: 500;
             transition: color 0.3s;
+            font-size: 0.95rem;
         }
 
-        nav a:hover {
+        .nav-links a:hover {
             color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 5% 3rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .profile-img {
+            width: 165px;
+            height: 165px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 25px rgba(0, 210, 255, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #0a0f1c;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0, 210, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         /* Sections */
         section {
-            padding: 5rem 10%;
+            padding: 5rem 5%;
             max-width: 1200px;
-            margin: auto;
+            margin: 0 auto;
         }
 
         .section-title {
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            color: var(--accent);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            display: inline-block;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 3rem;
+            position: relative;
         }
 
-        /* Hero Section */
-        #home {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            padding-top: 6rem;
-        }
-
-        .hero-text {
-            flex: 1;
-        }
-
-        .hero-text h3 {
-            color: var(--accent);
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-text h1 {
-            font-size: 3rem;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-        }
-
-        .hero-text p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.8rem;
-            background: linear-gradient(45deg, var(--accent), var(--accent-hover));
-            color: #000;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.4);
-        }
-
-        .hero-img {
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            border: 4px solid var(--accent);
-            overflow: hidden;
-            box-shadow: 0 0 25px rgba(0, 242, 254, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--card-bg);
-        }
-
-        .hero-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 0.8rem auto 0;
+            border-radius: 2px;
         }
 
         /* Cards Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.8rem;
         }
 
         .card {
-            background: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
             border: 1px solid var(--border-color);
             transition: transform 0.3s, border-color 0.3s;
         }
@@ -175,241 +196,213 @@
         }
 
         .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .card .role {
             color: var(--accent);
+            font-weight: 600;
+            font-size: 1rem;
             margin-bottom: 0.8rem;
-            font-size: 1.25rem;
+            display: block;
         }
 
-        .card ul {
-            list-style-position: inside;
-            color: var(--text-muted);
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
         }
 
-        .card ul li {
-            margin-bottom: 0.4rem;
-        }
-
-        .badge {
-            display: inline-block;
-            background: rgba(0, 242, 254, 0.1);
+        .org-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             color: var(--accent);
-            padding: 0.2rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            margin-bottom: 0.8rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 210, 255, 0.1);
+            border-radius: 6px;
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            transition: all 0.3s;
         }
 
-        /* Contact Section */
-        .contact-info {
+        .org-link:hover {
+            background: var(--accent);
+            color: #0a0f1c;
+        }
+
+        /* Skills */
+        .skills-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 0.8rem;
+            justify-content: center;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+        .skill-tag {
             background: var(--card-bg);
-            padding: 1rem 1.5rem;
-            border-radius: 8px;
             border: 1px solid var(--border-color);
-            flex: 1;
-            min-width: 250px;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            transition: border-color 0.3s;
         }
 
-        .contact-item i {
-            font-size: 1.5rem;
+        .skill-tag:hover {
+            border-color: var(--accent);
             color: var(--accent);
         }
 
-        /* Footer */
+        /* Contact & Footer */
+        .contact-info {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            font-size: 1.6rem;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
         footer {
             text-align: center;
             padding: 2rem;
             border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
+            color: var(--text-secondary);
             font-size: 0.9rem;
+            margin-top: 3rem;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
-            #home {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding-top: 7rem;
-            }
-            .hero-text h1 {
-                font-size: 2.2rem;
-            }
-            nav ul {
+            .nav-links {
                 display: none;
             }
-            .hero-img {
-                width: 220px;
-                height: 220px;
+            .hero h1 {
+                font-size: 2.1rem;
             }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <a href="#home" class="logo">&lt;AhsanEmon /&gt;</a>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects & Interests</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="logo">Ahsan Emon</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#leadership">Leadership</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="about">
+        <div class="hero-content">
+            <img src="profile.jpg" alt="MD Ahsan Kadir Emon" class="profile-img">
+            <h1>MD Ahsan Kadir Emon</h1>
+            <div class="subtitle">Co-Founder & Executive Director at <a href="https://cybersinon.org" target="_blank" style="color: var(--accent); text-decoration: underline;">Cyber Sinon</a> | CSE Undergraduate</div>
+            <p>Computer Science & Engineering student at Daffodil International University passionate about Cybersecurity, Ethical Hacking, CTF Competitions, and Embedded Systems & Robotics.</p>
+            <div class="btn-group">
+                <a href="#leadership" class="btn btn-primary"><i class="fas fa-users"></i> My Organization</a>
+                <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact Me</a>
+            </div>
+        </div>
     </header>
 
-    <section id="home">
-        <div class="hero-text">
-            <h3>Hello, I'm</h3>
-            <h1>MD AHSAN KADIR EMON</h1>
-            <p>Dedicated Computer Science and Engineering student at Daffodil International University with a strong passion for Cybersecurity, Robotics, and Circuit Design. Experienced in competitive environments with a Top 5 finish in a major CTF competition.</p>
-            <a href="#contact" class="btn">Get In Touch</a>
-        </div>
-        <div class="hero-img">
-            <!-- আপনার ছবির ফাইলের নাম এখানে বসাবেন -->
-            <img src="profile.jpg" alt="MD Ahsan Kadir Emon" onerror="this.src='https://via.placeholder.com/280x280/111827/00f2fe?text=Ahsan+Emon'">
+    <!-- Leadership & Organizations Section -->
+    <section id="leadership">
+        <h2 class="section-title">Leadership & Organizations</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Cyber Sinon</h3>
+                <span class="role">Co-Founder & Executive Director</span>
+                <p>Leading grassroots cybersecurity awareness initiatives, organizing training sessions, workshops, and seminars to educate students and communities across Bangladesh on digital safety and cyber defense.</p>
+                <a href="https://cybersinon.org" target="_blank" rel="noopener noreferrer" class="org-link">
+                    <i class="fas fa-globe"></i> Visit cybersinon.org
+                </a>
+            </div>
+
+            <div class="card">
+                <h3>DIU Cyber Security Club</h3>
+                <span class="role">Executive Committee Member & Event Organizer</span>
+                <p>Actively coordinating cybersecurity workshops, OSINT & Bug Bounty bootcamps, industry visits, and national Capture The Flag (CTF) competitions at Daffodil International University.</p>
+            </div>
         </div>
     </section>
 
+    <!-- Projects & Achievements Section -->
+    <section id="projects">
+        <h2 class="section-title">Projects & Achievements</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Capture The Flag (CTF) Competitions</h3>
+                <span class="role">4th Place Overall</span>
+                <p>Competed in competitive cybersecurity challenges focusing on Web Exploitation, Digital Forensics, OSINT, Cryptography, and Network Security.</p>
+            </div>
+
+            <div class="card">
+                <h3>IoT & Embedded Systems Prototyping</h3>
+                <span class="role">Hardware & Firmware Developer</span>
+                <p>Designed and built microcontroller-based automation, digital current/power monitoring systems, and robotics prototypes using ESP32, Arduino, and sensor modules.</p>
+            </div>
+
+            <div class="card">
+                <h3>eJPT Certified</h3>
+                <span class="role">Junior Penetration Tester</span>
+                <p>Completed intensive national cybersecurity training and earned eJPT certification covering network auditing, vulnerability assessment, and penetration testing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
     <section id="skills">
         <h2 class="section-title">Technical Skills</h2>
-        <div class="grid">
-            <div class="card">
-                <h3><i class="fas fa-shield-alt"></i> Cybersecurity</h3>
-                <ul>
-                    <li>CTF Participation</li>
-                    <li>Basic Penetration Testing</li>
-                    <li>Network Security</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-code"></i> Programming & OS</h3>
-                <ul>
-                    <li>C, C++ (Competitive Programming)</li>
-                    <li>Python (Basic)</li>
-                    <li>Linux (Ubuntu, Kali) & Windows</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-microchip"></i> Hardware & Robotics</h3>
-                <ul>
-                    <li>Circuit Design</li>
-                    <li>Basic Robotics Implementation</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-users"></i> Soft Skills</h3>
-                <ul>
-                    <li>Team Leadership</li>
-                    <li>Event Coordination</li>
-                    <li>Problem Solving</li>
-                </ul>
-            </div>
+        <div class="skills-container">
+            <span class="skill-tag">Cybersecurity & Ethical Hacking</span>
+            <span class="skill-tag">Penetration Testing (eJPT)</span>
+            <span class="skill-tag">OSINT & Digital Forensics</span>
+            <span class="skill-tag">Network Security</span>
+            <span class="skill-tag">C / C++</span>
+            <span class="skill-tag">Java (OOP)</span>
+            <span class="skill-tag">HTML / CSS / JavaScript</span>
+            <span class="skill-tag">ESP32 & Arduino</span>
+            <span class="skill-tag">IoT & Robotics</span>
+            <span class="skill-tag">Linux (Kali Linux)</span>
         </div>
     </section>
 
-    <section id="experience">
-        <h2 class="section-title">Experience & Competitions</h2>
-        <div class="grid">
-            <div class="card">
-                <span class="badge">Team Rank: 4th</span>
-                <h3>Cybersecurity Competition (CTF)</h3>
-                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Participant</p>
-                <ul>
-                    <li>Solved challenges involving cryptography, web exploitation, and forensics.</li>
-                    <li>Achieved a Top 5 finish under competitive pressure.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <span class="badge">Problem Solving</span>
-                <h3>Competitive Programming</h3>
-                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Active Participant</p>
-                <ul>
-                    <li>Regularly solving algorithmic problems in C/C++ to enhance logic and efficiency.</li>
-                </ul>
-            </div>
-            <div class="card">
-                <span class="badge">2025</span>
-                <h3>DIU Cybercon 2025</h3>
-                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Volunteer & Coordinator</p>
-                <ul>
-                    <li>Assisted in organizing a national-level cybersecurity conference.</li>
-                    <li>Managed logistics and attendee support.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">Projects & Interests</h2>
-        <div class="grid">
-            <div class="card">
-                <h3><i class="fas fa-robot"></i> Robotics & Circuits</h3>
-                <p style="color: var(--text-muted);">Building autonomous systems and designing efficient electronic circuits.</p>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-terminal"></i> Linux System Administration</h3>
-                <p style="color: var(--text-muted);">Practicing server management and command-line automation.</p>
-            </div>
-            <div class="card">
-                <h3><i class="fas fa-hands-helping"></i> Community Engagement</h3>
-                <p style="color: var(--text-muted);">Active participant in DIU tech community and departmental events.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="education">
-        <h2 class="section-title">Education & Personal Info</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>B.Sc. in Computer Science and Engineering (CSE)</h3>
-                <p><strong>Daffodil International University (DIU)</strong></p>
-                <p style="color: var(--text-muted); margin-top: 0.5rem;">Expected Graduation: 2029 | Current Status: 3rd Semester</p>
-            </div>
-            <div class="card">
-                <h3>Personal Details</h3>
-                <ul>
-                    <li><strong>Age:</strong> 21</li>
-                    <li><strong>Languages:</strong> Bangla (Native), English (Conversational)</li>
-                    <li><strong>Location:</strong> Daffodil Smart City, Ashulia, Savar, Dhaka</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
+    <!-- Contact Section -->
     <section id="contact">
-        <h2 class="section-title">Contact Me</h2>
+        <h2 class="section-title">Get In Touch</h2>
         <div class="contact-info">
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <div>
-                    <h4>Email</h4>
-                    <p style="color: var(--text-muted);">ahsanemon1710@gmail.com</p>
-                </div>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <div>
-                    <h4>Phone</h4>
-                    <p style="color: var(--text-muted);">01308105083</p>
-                </div>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <h4>Address</h4>
-                    <p style="color: var(--text-muted);">Daffodil Smart City, Ashulia, Savar, Dhaka</p>
-                </div>
+            <p>Feel free to reach out for cybersecurity collaborations, awareness programs, workshops, or tech projects.</p>
+            <p style="margin-top: 1rem; color: var(--text-primary);"><i class="fas fa-envelope" style="color: var(--accent);"></i> ahsanemon1710@gmail.com</p>
+            <div class="social-links">
+                <a href="https://cybersinon.org" target="_blank" title="Cyber Sinon Website"><i class="fas fa-globe"></i></a>
+                <a href="https://www.linkedin.com/in/md-ahsan-kadir-emon-b08260368" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ahsanemon1710" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:ahsanemon1710@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
             </div>
         </div>
     </section>
