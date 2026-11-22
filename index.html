@@ -1,517 +1,1197 @@
-export type CertificateCategory =
-  | 'Cybersecurity'
-  | 'Programming & Linux'
-  | 'CTF & Competitions'
-  | 'Leadership';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MD Ahsan Kadir Emon | Official Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+Bengali:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-primary: #030712;
+            --bg-secondary: #0a101f;
+            --card-bg: rgba(13, 21, 38, 0.82);
+            --card-hover: rgba(19, 31, 56, 0.95);
+            --accent: #00d2ff;
+            --accent-secondary: #38bdf8;
+            --accent-purple: #818cf8;
+            --accent-teal: #2dd4bf;
+            --accent-glow: rgba(0, 210, 255, 0.25);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: rgba(148, 163, 184, 0.16);
+        }
 
-export interface CertificateItem {
-  id: string;
-  title: string;
-  issuer: string;
-  date: string;
-  category: CertificateCategory;
-  credentialId?: string;
-  credentialUrl?: string;
-  detailMeta?: string;
-  image?: string;
-  summary: string;
-  isCustom?: boolean;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+            scroll-behavior: smooth;
+        }
 
-export type ProjectCategory = 'Robo Soccer' | 'IoT Security' | 'Cybersecurity & Awareness';
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.65;
+            position: relative;
+            overflow-x: hidden;
+            background-image:
+                radial-gradient(ellipse 60% 45% at 15% 12%, rgba(0, 210, 255, 0.15), transparent 65%),
+                radial-gradient(ellipse 55% 45% at 85% 22%, rgba(129, 140, 248, 0.13), transparent 65%),
+                radial-gradient(ellipse 50% 40% at 20% 75%, rgba(45, 212, 191, 0.09), transparent 65%),
+                linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+            background-size: auto, auto, auto, 42px 42px, 42px 42px;
+            background-attachment: fixed;
+        }
 
-export interface ProjectItem {
-  id: string;
-  title: string;
-  category: ProjectCategory;
-  year: string;
-  image?: string;
-  summary: string;
-  architecture: string;
-  outcomes: string[];
-  stack: string[];
-  linkLabel: string;
-  linkUrl: string;
-}
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(3, 7, 18, 0.85);
+            backdrop-filter: blur(18px);
+            padding: 0.95rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+        }
 
-export interface ExperienceItem {
-  id: string;
-  role: string;
-  organization: string;
-  period: string;
-  location: string;
-  focus: string;
-  description: string;
-  highlights: string[];
-}
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
 
-export interface OrganizationRole {
-  id: string;
-  name: string;
-  role: string;
-  period: string;
-  url?: string;
-  summary: string;
-  responsibilities: string[];
-}
+        .logo span {
+            color: var(--accent);
+        }
 
-export interface SkillGroup {
-  id: string;
-  title: string;
-  subtitle: string;
-  items: string[];
-}
+        .nav-links {
+            display: flex;
+            gap: 1.25rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
 
-export interface BookPhotoItem {
-  id: string;
-  label: string;
-  caption: string;
-  image: string;
-  fit: 'cover' | 'contain';
-}
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.88rem;
+            transition: color 0.25s;
+        }
 
-export interface PublishedBook {
-  titleEnglish: string;
-  titleBangla: string;
-  tagline: string;
-  isbn: string;
-  publicationDate: string;
-  publicationDateBangla: string;
-  place: string;
-  registry: string;
-  authors: string[];
-  description: string;
-  photos: BookPhotoItem[];
-}
+        .nav-links a:hover {
+            color: var(--accent);
+        }
 
-export type GalleryCategory =
-  | 'Awareness & Seminars'
-  | 'Book Showcase'
-  | 'CTF & Tech'
-  | 'Robo Soccer';
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 7rem 5% 3.5rem;
+            text-align: center;
+            max-width: 1220px;
+            margin: 0 auto;
+        }
 
-export interface GalleryEventItem {
-  id: string;
-  eventName: string;
-  date: string;
-  location: string;
-  category: GalleryCategory;
-  image: string;
-  caption: string;
-  isCustom?: boolean;
-}
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.42rem 1.05rem;
+            border-radius: 999px;
+            background: rgba(0, 210, 255, 0.11);
+            border: 1px solid rgba(0, 210, 255, 0.34);
+            color: var(--accent);
+            font-size: 0.84rem;
+            font-weight: 600;
+            margin-bottom: 1.4rem;
+        }
 
-export const PROFILE = {
-  name: 'MD Ahsan Kadir Emon',
-  shortName: 'Ahsan Kadir Emon',
-  initials: 'AE',
-  rolePrimary: 'Co-Founder & Executive Director',
-  organization: 'Cyber Sinon',
-  organizationUrl: 'https://cybersinon.org',
-  academicRole: 'CSE Undergraduate at Daffodil International University',
-  location: 'Dhaka, Bangladesh',
-  email: 'ahsanemon1710@gmail.com',
-  portraitSrc: '/assets/aistudio/profile_ba0bc892.jpg',
-  githubPagesPortraitFilename: 'profile.jpg',
-  bio: 'Computer Science & Engineering undergraduate at Daffodil International University passionate about cybersecurity awareness, ethical hacking, IoT security, CTF competitions, volunteer leadership, and recently building competitive Robo Soccer robots. Co-Author of the ISBN-registered cybersecurity awareness book "Cyber Aid: Protecting Humanity" and Co-Founder & Executive Director of Cyber Sinon, empowering students, educators, and communities across Bangladesh with practical digital hygiene and hands-on defense.',
-  focusAreas: [
-    'Cybersecurity Awareness',
-    'Ethical Hacking',
-    'IoT Security',
-    'CTF Competitions',
-    'Robo Soccer',
-    'Published Co-Author',
-  ],
-  metrics: [
-    {
-      value: 'Co-Founder & ED',
-      label: 'Cyber Sinon (cybersinon.org)',
-      context: 'Cybersecurity awareness & practical defense',
-    },
-    {
-      value: 'ISBN 978-984-36-3218-0',
-      label: 'Cyber Aid: Protecting Humanity',
-      context: 'Co-Author · Published in Dhaka',
-    },
-    {
-      value: 'Score 100 / 100',
-      label: 'Junior Penetration Tester',
-      context: 'National Cyber Security Agency & DIU',
-    },
-    {
-      value: 'IoT Sec & Robo Soccer',
-      label: 'Active Engineering Focus',
-      context: 'Connected device defense & robotics',
-    },
-  ],
-  links: {
-    cybersinon: 'https://cybersinon.org',
-    github: 'https://github.com/ahsanemon',
-    linkedin: 'https://linkedin.com/in/md-ahsan-kadir-emon',
-    email: 'mailto:ahsanemon1710@gmail.com',
-  },
-};
+        .profile-img {
+            width: 165px;
+            height: 165px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin: 0 auto 1.3rem;
+            display: block;
+            box-shadow: 0 0 42px var(--accent-glow), 0 0 0 8px rgba(0, 210, 255, 0.08);
+        }
 
-export const PUBLISHED_BOOK: PublishedBook = {
-  titleEnglish: 'Cyber Aid: Protecting Humanity',
-  titleBangla: 'সাইবার সহায়তা মানবতাকে সুরক্ষা প্রদান',
-  tagline: 'Building Digital Awareness for a Safer World',
-  isbn: '978-984-36-3218-0',
-  publicationDate: '21 April 2026',
-  publicationDateBangla: '৮ বৈশাখ ১৪৩৩',
-  place: 'Dhaka, Bangladesh',
-  registry:
-    'Department of Archives and Library, Ministry of Cultural Affairs, Government of the People’s Republic of Bangladesh',
-  authors: ['MD Ahsan Kadir Emon', 'Md Imtiaz Ahmed', 'Md. Mehedi Hasan'],
-  description:
-    'A practical cybersecurity awareness book co-authored to make digital safety accessible to students, educators, and everyday citizens. Covering online threat recognition, phishing defense, personal privacy, and responsible cyber hygiene, Cyber Aid bridges technical security principles with real-world protection for humanity.',
-  photos: [
-    {
-      id: 'book-cover',
-      label: 'Book Cover Showcase',
-      caption:
-        'Cyber Aid: Protecting Humanity — Building Digital Awareness for a Safer World, photographed during a campus awareness seminar.',
-      image: '/assets/aistudio/Book_6dd71a80.jpg',
-      fit: 'cover',
-    },
-    {
-      id: 'book-head-sir',
-      label: 'Presentation to Head of CSE, DIU',
-      caption:
-        'Presenting a copy of Cyber Aid: Protecting Humanity to Professor Dr. Sheak Rashed Haider Noori, Head of the Department of Computer Science and Engineering (CSE) at Daffodil International University (DIU).',
-      image: '/assets/aistudio/book_with_head_sir_6166455b.jpg',
-      fit: 'cover',
-    },
-    {
-      id: 'book-isbn',
-      label: 'Official ISBN Certificate',
-      caption:
-        'Official ISBN Registration Certificate (ISBN 978-984-36-3218-0) issued by the Department of Archives and Library, Ministry of Cultural Affairs, Bangladesh.',
-      image: '/assets/aistudio/Book_author_03e9a1c5.png',
-      fit: 'contain',
-    },
-  ],
-};
+        .hero h1 {
+            font-size: 2.9rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.45rem;
+            background: linear-gradient(135deg, #ffffff 35%, #bae6fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-export const INITIAL_GALLERY_EVENTS: GalleryEventItem[] = [
-  {
-    id: 'evt-diu-cse-book',
-    eventName: 'Book Presentation at Dept. of CSE, Daffodil International University',
-    date: '2026',
-    location: 'Knowledge Tower, DIU, Dhaka',
-    category: 'Book Showcase',
-    image: '/assets/aistudio/book_with_head_sir_6166455b.jpg',
-    caption:
-      'Presenting Cyber Aid: Protecting Humanity to Professor Dr. Sheak Rashed Haider Noori, Head of the Department of Computer Science and Engineering (CSE) at Daffodil International University (DIU).',
-  },
-  {
-    id: 'evt-cyber-aid-seminar',
-    eventName: 'Cybersecurity Awareness Seminar & Book Showcase',
-    date: '2026',
-    location: 'Dhaka, Bangladesh',
-    category: 'Awareness & Seminars',
-    image: '/assets/aistudio/Book_6dd71a80.jpg',
-    caption:
-      'Sharing Cyber Aid: Protecting Humanity with university students during an interactive digital safety and cyber hygiene seminar.',
-  },
-  {
-    id: 'evt-robo-soccer',
-    eventName: 'Robo Soccer Prototype & Arena Practice Session',
-    date: '2026',
-    location: 'Daffodil Smart City, Dhaka',
-    category: 'Robo Soccer',
-    image: '/src/assets/images/project_robo_soccer_1795352785256.jpg',
-    caption:
-      'Testing omnidirectional mecanum drive kinematics and ball-control agility for competitive university Robo Soccer tournaments.',
-  },
-];
+        .hero .subtitle {
+            font-size: 1.12rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
 
-export const ORGANIZATION_ROLES: OrganizationRole[] = [
-  {
-    id: 'cybersinon',
-    name: 'Cyber Sinon',
-    role: 'Co-Founder & Executive Director',
-    period: '2024 – Present',
-    url: 'https://cybersinon.org',
-    summary:
-      'Based in Dhaka, Bangladesh, Cyber Sinon primarily works on cybersecurity awareness and 100% practical digital defense—moving beyond abstract slideshows to empower students, educators, and communities with real-world cyber hygiene, simulated labs, and free youth outreach programs.',
-    responsibilities: [
-      'Student Cyber Hygiene & Awareness Bootcamps: Lead free youth outreach missions helping students build everyday online safety habits and recognize phishing or social engineering.',
-      'Campus Digital Safety Seminars: Organize in-person and hybrid workshops and conferences across Dhaka and Bangladesh for students, educators, and local communities.',
-      'Practical Defense & Simulated Labs: Support hands-on defensive modules covering OWASP web safety, threat awareness, and incident response fundamentals.',
-    ],
-  },
-  {
-    id: 'diu-community',
-    name: 'DIU Cybersecurity & Robotics Community',
-    role: 'Student Mentor & Technical Coordinator',
-    period: '2023 – Present',
-    summary:
-      'Active contributor within Daffodil International University’s CSE ecosystem, collaborating across cybersecurity study groups, CTF preparation, IoT security discussions, and Robo Soccer builds.',
-    responsibilities: [
-      'Coordinate peer learning sessions on Linux fundamentals, web security, and IoT device hardening.',
-      'Collaborate with university robotics peers on competitive Robo Soccer drive control, arena testing, and event showcases.',
-    ],
-  },
-  {
-    id: 'volunteer-network',
-    name: 'Youth Digital Safety & Volunteer Network',
-    role: 'Awareness Facilitator & Event Lead',
-    period: '2022 – Present',
-    summary:
-      'Grassroots volunteer leadership delivering practical digital safety campaigns and community awareness events across schools, colleges, and university campuses.',
-    responsibilities: [
-      'Facilitate interactive awareness sessions on password hygiene, two-factor authentication, and safe social media practices.',
-      'Coordinate volunteer squads, speaker logistics, and technical operations for hybrid and campus events.',
-    ],
-  },
-];
+        .hero .subtitle a {
+            color: var(--text-primary);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+        }
 
-export const EXPERIENCES: ExperienceItem[] = [
-  {
-    id: 'exp-cybersinon-exec',
-    role: 'Co-Founder & Executive Director',
-    organization: 'Cyber Sinon (cybersinon.org)',
-    period: '2024 – Present',
-    location: 'Dhaka, Bangladesh',
-    focus: 'Cybersecurity Awareness & Practical Defense Outreach',
-    description:
-      'Leading Cyber Sinon’s core mission of spreading practical cybersecurity awareness across Bangladesh—replacing passive theory slides with interactive cyber hygiene bootcamps and real-world digital safety education.',
-    highlights: [
-      'Spearheaded free youth awareness outreach, campus digital safety seminars, and community anti-phishing campaigns.',
-      'Built hands-on learning pathways introducing students to OWASP web safety, threat awareness, and incident response basics.',
-    ],
-  },
-  {
-    id: 'exp-robo-soccer',
-    role: 'Robo Soccer Builder & Competition Developer',
-    organization: 'University Robotics & Arena Competitions',
-    period: '2025 – Present',
-    location: 'Daffodil Smart City, Dhaka',
-    focus: 'Robo Soccer Engineering & Wireless Control',
-    description:
-      'Recently focused on designing, tuning, and testing competitive Robo Soccer bots—combining agile chassis mechanics, responsive wireless control, and reliable arena match performance.',
-    highlights: [
-      'Calibrated omni/mecanum wheel drive kinematics, motor driver power delivery, and low-latency wireless maneuvering.',
-      'Iterated on kicker/dribbler geometry and rapid field diagnostics during practice scrimmages.',
-    ],
-  },
-  {
-    id: 'exp-iot-ctf',
-    role: 'IoT Security Researcher & CTF Competitor',
-    organization: 'Inter-University Security Labs & CTFs',
-    period: '2023 – Present',
-    location: 'Bangladesh',
-    focus: 'IoT Security, Ethical Hacking & CTF Challenges',
-    description:
-      'Exploring IoT security attack surfaces alongside Capture The Flag competitions—assessing smart device communication, default credentials, network exposure, and practical hardening.',
-    highlights: [
-      'Audited wireless protocols, MQTT broker configurations, and local network isolation for connected IoT devices.',
-      'Coordinated peer CTF practice sessions spanning Linux fundamentals, web exploitation, and packet analysis.',
-    ],
-  },
-  {
-    id: 'exp-volunteer-mentor',
-    role: 'Volunteer Lead & Campus Seminar Coordinator',
-    organization: 'Daffodil International University (CSE)',
-    period: '2022 – Present',
-    location: 'Birulia, Savar, Dhaka',
-    focus: 'Volunteer Leadership & Peer Mentorship',
-    description:
-      'Organized campus seminars, student onboarding programs, and collaborative technical showcases while mentoring junior undergraduates in cybersecurity basics and Linux workflows.',
-    highlights: [
-      'Led volunteer teams managing event coordination, participant support, and hybrid workshop broadcasts.',
-      'Mentored fellow students transitioning into ethical hacking fundamentals and security awareness volunteering.',
-    ],
-  },
-];
+        .hero .academic-line {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.1rem;
+        }
 
-export const INITIAL_CERTIFICATES: CertificateItem[] = [
-  {
-    id: 'cert-ncsa-jpt',
-    title: 'Junior Penetration Tester (7 Days Training)',
-    issuer: 'National Cyber Security Agency & Daffodil International University (Dept. of CSE)',
-    date: '2025',
-    category: 'Cybersecurity',
-    credentialId: '7384',
-    detailMeta: 'Score: 100 / 100',
-    image: '/assets/aistudio/ejpt_b786223b.png',
-    summary:
-      'Completed intensive 7-day Junior Penetration Tester training achieving a perfect score of 100, certified by the National Cyber Security Agency and DIU Department of CSE (Managed by SICL & TechOptions).',
-  },
-  {
-    id: 'cert-tcm-sec-fundamentals',
-    title: 'Practical Security Fundamentals',
-    issuer: 'TCM Security',
-    date: '08/12/2025',
-    category: 'Cybersecurity',
-    credentialId: 'cert_4rjlktkp',
-    detailMeta: '9 CEU Hours',
-    image: '/assets/aistudio/Security_Fundamentals_32439d1c.png',
-    summary:
-      'Comprehensive foundational cybersecurity training instructed by Andrew Bellini covering core security architecture, threat landscapes, defensive controls, and practical risk mitigation.',
-  },
-  {
-    id: 'cert-tcm-prog-100',
-    title: 'Programming 100: Fundamentals',
-    issuer: 'TCM Security',
-    date: '08/12/2025',
-    category: 'Programming & Linux',
-    credentialId: 'cert_c243px0b',
-    detailMeta: '3 CEU Hours',
-    image: '/assets/aistudio/Programming_100_00b3593a.png',
-    summary:
-      'Core programming principles and scripting fundamentals for cybersecurity workflows, certified by TCM Security (Heath Maverick Adams, Founder & CEO).',
-  },
-  {
-    id: 'cert-tcm-linux-100',
-    title: 'Linux 100: Fundamentals',
-    issuer: 'TCM Security',
-    date: '20/11/2025',
-    category: 'Programming & Linux',
-    credentialId: 'cert_h77n7cm9',
-    detailMeta: '2 CEU Hours',
-    image: '/assets/aistudio/linux_ad9fd262.png',
-    summary:
-      'Essential Linux administration, file system navigation, permissions, and command-line operations for security practitioners, certified by TCM Security.',
-  },
-];
+        .hero .bio {
+            color: var(--text-secondary);
+            font-size: 1.01rem;
+            max-width: 820px;
+            margin: 0 auto 1.5rem;
+        }
 
-export const PROJECTS: ProjectItem[] = [
-  {
-    id: 'proj-robo-soccer',
-    title: 'Competitive Robo Soccer Bot & Drive Control System',
-    category: 'Robo Soccer',
-    year: '2026',
-    image: '/src/assets/images/project_robo_soccer_1795352785256.jpg',
-    summary:
-      'Recent hands-on robotics build engineered for university Robo Soccer arenas, featuring agile omnidirectional movement, high-torque drive tuning, and low-latency wireless control.',
-    architecture:
-      'Built around a compact aluminum competition chassis with mecanum drive kinematics, dual-channel motor control, balanced Li-ion power distribution, and responsive wireless telemetry for rapid ball interception and scoring.',
-    outcomes: [
-      'Achieved smooth multi-directional strafing and tight turn radius on tournament pitch surfaces.',
-      'Continuously refining ball-control mechanics, traction balance, and signal reliability for upcoming Robo Soccer competitions.',
-    ],
-    stack: ['Robo Soccer', 'Mecanum Drive', 'Motor Control / PWM', 'Wireless Telemetry', 'Robotics Arena'],
-    linkLabel: 'Discuss Robotics Build',
-    linkUrl: '#contact',
-  },
-  {
-    id: 'proj-iot-security',
-    title: 'IoT Security & Wireless Device Assessment Lab',
-    category: 'IoT Security',
-    year: '2025',
-    image: '/src/assets/images/project_iot_hardware_1795351575659.jpg',
-    summary:
-      'Dedicated IoT security testing environment built to identify common connected-device vulnerabilities—including unencrypted MQTT traffic, weak authentication, and insecure Wi-Fi provisioning.',
-    architecture:
-      'Configured an isolated IoT test VLAN with packet capture, broker TLS enforcement verification, port/service enumeration, and firmware/interface risk checklists for smart consumer and lab devices.',
-    outcomes: [
-      'Demonstrated how unencrypted IoT telemetry can be intercepted on flat networks and mitigated using TLS + VLAN segmentation.',
-      'Created practical IoT security hygiene checklists shared during campus awareness workshops.',
-    ],
-    stack: ['IoT Security', 'MQTT / TLS Auditing', 'Wireshark', 'Nmap', 'Network Segmentation'],
-    linkLabel: 'Request IoT Security Brief',
-    linkUrl: '#contact',
-  },
-  {
-    id: 'proj-cybersinon-portal',
-    title: 'Cyber Sinon Awareness & Practical Defense Hub',
-    category: 'Cybersecurity & Awareness',
-    year: '2025',
-    image: '/src/assets/images/project_web_platform_1795351573779.jpg',
-    summary:
-      'Official platform for Cyber Sinon (cybersinon.org) advancing 100% practical cybersecurity awareness, student cyber hygiene bootcamps, and campus digital safety seminars across Bangladesh.',
-    architecture:
-      'Designed to move learners beyond abstract slideshows by connecting students and educators to interactive awareness programs, simulated defensive labs, and free youth digital safety resources.',
-    outcomes: [
-      'Serves as the central hub for Cyber Sinon’s Dhaka-based and hybrid awareness missions across Bangladesh.',
-      'Streamlined campus seminar partnerships, student outreach signups, and cyber hygiene guidance.',
-    ],
-    stack: ['Cybersecurity Awareness', 'Cyber Hygiene', 'OWASP Defense', 'Community Platform', 'cybersinon.org'],
-    linkLabel: 'Visit cybersinon.org',
-    linkUrl: 'https://cybersinon.org',
-  },
-  {
-    id: 'proj-cyber-lab',
-    title: 'Virtualized Penetration Testing & CTF Practice Lab',
-    category: 'Cybersecurity & Awareness',
-    year: '2025',
-    image: '/src/assets/images/project_cyber_lab_1795351573839.jpg',
-    summary:
-      'Isolated offensive-and-defensive lab environment for ethical hacking drills, OWASP web vulnerability verification, packet forensics, and inter-university CTF preparation.',
-    architecture:
-      'Segmented virtualized targets paired with Kali Linux, Burp Suite, and Wireshark traffic inspection to document end-to-end attack paths alongside defensive hardening steps.',
-    outcomes: [
-      'Applied skills from Junior Penetration Tester (Score 100/100) and TCM Security Practical Security Fundamentals.',
-      'Compiled repeatable enumeration and defensive remediation playbooks for student study groups.',
-    ],
-    stack: ['Kali Linux', 'Burp Suite', 'Wireshark', 'Nmap', 'Bash', 'Python'],
-    linkLabel: 'Explore Cyber Sinon',
-    linkUrl: 'https://cybersinon.org',
-  },
-];
+        .focus-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.55rem;
+            justify-content: center;
+            margin-bottom: 1.8rem;
+        }
 
-export const SKILL_GROUPS: SkillGroup[] = [
-  {
-    id: 'cybersecurity',
-    title: 'Cybersecurity Awareness & Ethical Hacking',
-    subtitle: 'Digital hygiene, practical defense & CTF',
-    items: [
-      'Cybersecurity Awareness',
-      'Student Cyber Hygiene',
-      'Junior Penetration Testing',
-      'Ethical Hacking',
-      'CTF Competitions',
-      'Phishing & Social Engineering Defense',
-      'OWASP Web Defense',
-      'Threat & Packet Analysis',
-      'Incident Response Basics',
-    ],
-  },
-  {
-    id: 'iot-security',
-    title: 'IoT Security',
-    subtitle: 'Connected device auditing & hardening',
-    items: [
-      'IoT Device Security',
-      'Wireless & Wi-Fi Security',
-      'MQTT / TLS Traffic Auditing',
-      'Network Segmentation & VLANs',
-      'Smart Device Threat Modeling',
-      'Default Credential & Port Auditing',
-      'Serial / UART Security Awareness',
-      'Home & Campus IoT Hardening',
-    ],
-  },
-  {
-    id: 'robo-soccer',
-    title: 'Robo Soccer & Applied Robotics',
-    subtitle: 'Recent competition robotics work',
-    items: [
-      'Robo Soccer Bot Design',
-      'Mecanum / Omni Drive Control',
-      'Motor Driver & PWM Tuning',
-      'Low-Latency Wireless Control',
-      'Chassis & Traction Calibration',
-      'Power Management & Diagnostics',
-      'Arena Match Strategy',
-    ],
-  },
-  {
-    id: 'tools',
-    title: 'Programming, Linux & Security Tools',
-    subtitle: 'Core scripting & daily security stack',
-    items: [
-      'Linux Fundamentals & CLI',
-      'Python',
-      'C / C++',
-      'Bash Scripting',
-      'Kali Linux',
-      'Burp Suite',
-      'Wireshark',
-      'Nmap',
-      'Git & GitHub',
-    ],
-  },
-];
+        .focus-pill {
+            font-size: 0.8rem;
+            padding: 0.32rem 0.85rem;
+            border-radius: 999px;
+            background: rgba(129, 140, 248, 0.12);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            color: #c7d2fe;
+            font-weight: 500;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.9rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.8rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.55rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            color: #030712;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px var(--accent-glow);
+        }
+
+        .btn-outline {
+            background: rgba(13, 21, 38, 0.7);
+            border: 1px solid rgba(0, 210, 255, 0.45);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background: rgba(0, 210, 255, 0.14);
+            transform: translateY(-2px);
+        }
+
+        /* Metrics Bar */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.1rem;
+            width: 100%;
+            text-align: left;
+        }
+
+        .metric-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.2rem 1.35rem;
+        }
+
+        .metric-card .val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
+        }
+
+        .metric-card .lbl {
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+        }
+
+        .metric-card .ctx {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 4.5rem 5%;
+            max-width: 1220px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 2.8rem;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            display: block;
+            margin-bottom: 0.35rem;
+        }
+
+        .section-title {
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: -0.015em;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 56px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-purple));
+            margin: 0.7rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Grid & Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.65rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.75rem;
+            transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 210, 255, 0.48);
+            background: var(--card-hover);
+        }
+
+        .card-top-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .badge {
+            padding: 0.24rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(0, 210, 255, 0.12);
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.76rem;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+
+        .card .role {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.92rem;
+            margin-bottom: 0.75rem;
+            display: block;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.15rem;
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bullet-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .org-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 0.5rem 0.95rem;
+            margin-top: 0.6rem;
+            background: rgba(0, 210, 255, 0.08);
+            border-radius: 8px;
+            border: 1px solid rgba(0, 210, 255, 0.28);
+            transition: all 0.25s ease;
+            width: fit-content;
+        }
+
+        .org-link:hover {
+            background: var(--accent);
+            color: #030712;
+        }
+
+        /* Published Book Feature */
+        .book-feature {
+            background: var(--card-bg);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            border-radius: 16px;
+            padding: 2.2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .book-meta-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem;
+            margin: 1rem 0 1.2rem;
+        }
+
+        .book-meta-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 6px;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            color: var(--text-primary);
+        }
+
+        .media-box {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            background: #070d1a;
+            margin-bottom: 1rem;
+        }
+
+        .media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .media-box.contain img {
+            object-fit: contain;
+            padding: 0.5rem;
+        }
+
+        /* Filter Tabs */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.65rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1.1rem;
+            border-radius: 999px;
+            font-size: 0.86rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--accent);
+            color: #030712;
+            border-color: var(--accent);
+        }
+
+        /* Tech Tags */
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            margin-top: 0.75rem;
+        }
+
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            background: rgba(148, 163, 184, 0.1);
+            color: #cbd5e1;
+        }
+
+        /* Contact & Footer */
+        .contact-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.55rem;
+            transition: all 0.25s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 5%;
+            border-top: 1px solid var(--border-color);
+            background: rgba(3, 7, 18, 0.8);
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2.15rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="logo">&lt;<span>Emon</span> /&gt;</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#book">Published Book</a></li>
+            <li><a href="#organization">Organization</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero" id="about">
+        <div class="status-badge"><i class="fas fa-shield-halved"></i> Dhaka, Bangladesh • Cybersecurity & Robotics</div>
+        <img src="profile.jpg" alt="MD Ahsan Kadir Emon" class="profile-img">
+        <h1>MD Ahsan Kadir Emon</h1>
+        <div class="subtitle">
+            Co-Founder & Executive Director at <a href="https://cybersinon.org" target="_blank" rel="noopener noreferrer">Cyber Sinon</a>
+        </div>
+        <div class="academic-line">CSE Undergraduate at Daffodil International University</div>
+        <p class="bio">
+            Computer Science & Engineering undergraduate at Daffodil International University passionate about cybersecurity awareness, ethical hacking, IoT security, CTF competitions, volunteer leadership, and recently building competitive Robo Soccer robots. Co-Author of the ISBN-registered cybersecurity awareness book "Cyber Aid: Protecting Humanity" and Co-Founder & Executive Director of Cyber Sinon, empowering students, educators, and communities across Bangladesh with practical digital hygiene and hands-on defense.
+        </p>
+
+        <div class="focus-pills">
+            <span class="focus-pill">Cybersecurity Awareness</span>
+            <span class="focus-pill">Ethical Hacking</span>
+            <span class="focus-pill">IoT Security</span>
+            <span class="focus-pill">CTF Competitions</span>
+            <span class="focus-pill">Robo Soccer</span>
+            <span class="focus-pill">Published Co-Author</span>
+        </div>
+
+        <div class="btn-group">
+            <a href="#book" class="btn btn-primary"><i class="fas fa-book"></i> Published Book</a>
+            <a href="#organization" class="btn btn-outline"><i class="fas fa-building"></i> Cyber Sinon</a>
+            <a href="#certificates" class="btn btn-outline"><i class="fas fa-award"></i> Certificates</a>
+            <a href="#contact" class="btn btn-outline"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="val">Co-Founder & ED</div>
+                <div class="lbl">Cyber Sinon (cybersinon.org)</div>
+                <div class="ctx">Cybersecurity awareness & practical defense</div>
+            </div>
+            <div class="metric-card">
+                <div class="val">ISBN 978-984-36-3218-0</div>
+                <div class="lbl">Cyber Aid: Protecting Humanity</div>
+                <div class="ctx">Co-Author · Published in Dhaka</div>
+            </div>
+            <div class="metric-card">
+                <div class="val">Score 100 / 100</div>
+                <div class="lbl">Junior Penetration Tester</div>
+                <div class="ctx">National Cyber Security Agency & DIU</div>
+            </div>
+            <div class="metric-card">
+                <div class="val">IoT Sec & Robo Soccer</div>
+                <div class="lbl">Active Engineering Focus</div>
+                <div class="ctx">Connected device defense & robotics</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Published Book Section -->
+    <section id="book">
+        <div class="section-header">
+            <span class="section-tag">ISBN Registered Publication</span>
+            <h2 class="section-title">Published Book</h2>
+        </div>
+
+        <div class="book-feature">
+            <div class="card-top-meta">
+                <span>National Archives & Library Registry, Bangladesh</span>
+                <span class="badge">ISBN 978-984-36-3218-0</span>
+            </div>
+            <h3 style="font-size: 1.7rem; margin-bottom: 0.25rem;">Cyber Aid: Protecting Humanity</h3>
+            <div style="color: var(--accent); font-weight: 600; font-size: 1.05rem; margin-bottom: 0.35rem;">সাইবার সহায়তা মানবতাকে সুরক্ষা প্রদান</div>
+            <div style="color: var(--text-secondary); font-style: italic; font-size: 0.95rem;">“Building Digital Awareness for a Safer World”</div>
+
+            <div class="book-meta-tags">
+                <span class="book-meta-tag"><i class="fas fa-barcode"></i> ISBN: 978-984-36-3218-0</span>
+                <span class="book-meta-tag"><i class="fas fa-calendar"></i> 21 April 2026 (৮ বৈশাখ ১৪৩৩)</span>
+                <span class="book-meta-tag"><i class="fas fa-location-dot"></i> Dhaka, Bangladesh</span>
+                <span class="book-meta-tag"><i class="fas fa-users"></i> Co-Authors: MD Ahsan Kadir Emon, Md Imtiaz Ahmed, Md. Mehedi Hasan</span>
+            </div>
+
+            <p style="color: var(--text-secondary); font-size: 0.96rem;">
+                A practical cybersecurity awareness book co-authored to make digital safety accessible to students, educators, and everyday citizens. Covering online threat recognition, phishing defense, personal privacy, and responsible cyber hygiene, Cyber Aid bridges technical security principles with real-world protection for humanity.
+            </p>
+            <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.6rem;">
+                <strong>Registry:</strong> Department of Archives and Library, Ministry of Cultural Affairs, Government of the People’s Republic of Bangladesh
+            </p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="media-box">
+                        <img src="Book_6dd71a80.jpg" alt="Book Cover Showcase" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <h3>Book Cover Showcase</h3>
+                    <p>Cyber Aid: Protecting Humanity — Building Digital Awareness for a Safer World, photographed during a campus awareness seminar.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="media-box">
+                        <img src="book_with_head_sir_6166455b.jpg" alt="Presentation to Head of CSE, DIU" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <h3>Presentation to Head of CSE, DIU</h3>
+                    <p>Presenting a copy of Cyber Aid: Protecting Humanity to Professor Dr. Sheak Rashed Haider Noori, Head of the Department of Computer Science and Engineering (CSE) at Daffodil International University (DIU).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="media-box contain">
+                        <img src="Book_author_03e9a1c5.png" alt="Official ISBN Certificate" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <h3>Official ISBN Certificate</h3>
+                    <p>Official ISBN Registration Certificate (ISBN 978-984-36-3218-0) issued by the Department of Archives and Library, Ministry of Cultural Affairs, Bangladesh.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Organization Section -->
+    <section id="organization">
+        <div class="section-header">
+            <span class="section-tag">Leadership & Affiliation</span>
+            <h2 class="section-title">Organizations</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-top-meta">
+                        <span>2024 – Present</span>
+                        <span class="badge">Primary Org</span>
+                    </div>
+                    <h3>Cyber Sinon</h3>
+                    <span class="role">Co-Founder & Executive Director</span>
+                    <p>Based in Dhaka, Bangladesh, Cyber Sinon primarily works on cybersecurity awareness and 100% practical digital defense—moving beyond abstract slideshows to empower students, educators, and communities with real-world cyber hygiene, simulated labs, and free youth outreach programs.</p>
+                    <ul class="bullet-list">
+                        <li>Student Cyber Hygiene & Awareness Bootcamps across Bangladesh.</li>
+                        <li>Campus Digital Safety Seminars for students, educators, and communities.</li>
+                        <li>Practical Defense & Simulated Labs covering OWASP web safety and incident response.</li>
+                    </ul>
+                </div>
+                <a href="https://cybersinon.org" target="_blank" rel="noopener noreferrer" class="org-link">
+                    <i class="fas fa-globe"></i> Visit cybersinon.org
+                </a>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-top-meta">
+                        <span>2023 – Present</span>
+                        <span class="badge">University</span>
+                    </div>
+                    <h3>DIU Cybersecurity & Robotics Community</h3>
+                    <span class="role">Student Mentor & Technical Coordinator</span>
+                    <p>Active contributor within Daffodil International University’s CSE ecosystem, collaborating across cybersecurity study groups, CTF preparation, IoT security discussions, and Robo Soccer builds.</p>
+                    <ul class="bullet-list">
+                        <li>Coordinate peer learning sessions on Linux fundamentals, web security, and IoT device hardening.</li>
+                        <li>Collaborate with university robotics peers on competitive Robo Soccer drive control and arena testing.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-top-meta">
+                        <span>2022 – Present</span>
+                        <span class="badge">Outreach</span>
+                    </div>
+                    <h3>Youth Digital Safety & Volunteer Network</h3>
+                    <span class="role">Awareness Facilitator & Event Lead</span>
+                    <p>Grassroots volunteer leadership delivering practical digital safety campaigns and community awareness events across schools, colleges, and university campuses.</p>
+                    <ul class="bullet-list">
+                        <li>Facilitate interactive sessions on password hygiene, 2FA, and safe social media practices.</li>
+                        <li>Coordinate volunteer squads, speaker logistics, and hybrid technical event operations.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-header">
+            <span class="section-tag">Career & Volunteer Trajectory</span>
+            <h2 class="section-title">Experience</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="card-top-meta">
+                        <span>2024 – Present</span>
+                        <span class="badge">Dhaka, Bangladesh</span>
+                    </div>
+                    <h3>Co-Founder & Executive Director</h3>
+                    <span class="role">Cyber Sinon (cybersinon.org)</span>
+                    <p>Leading Cyber Sinon’s core mission of spreading practical cybersecurity awareness across Bangladesh—replacing passive theory slides with interactive cyber hygiene bootcamps and real-world digital safety education.</p>
+                    <ul class="bullet-list">
+                        <li>Spearheaded free youth awareness outreach, campus seminars, and anti-phishing campaigns.</li>
+                        <li>Built hands-on learning pathways introducing students to OWASP web safety and threat awareness.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-top-meta">
+                        <span>2025 – Present</span>
+                        <span class="badge">Daffodil Smart City</span>
+                    </div>
+                    <h3>Robo Soccer Builder & Competition Developer</h3>
+                    <span class="role">University Robotics & Arena Competitions</span>
+                    <p>Recently focused on designing, tuning, and testing competitive Robo Soccer bots—combining agile chassis mechanics, responsive wireless control, and reliable arena match performance.</p>
+                    <ul class="bullet-list">
+                        <li>Calibrated omni/mecanum wheel drive kinematics and low-latency wireless maneuvering.</li>
+                        <li>Iterated on kicker/dribbler geometry and rapid field diagnostics during scrimmages.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-top-meta">
+                        <span>2023 – Present</span>
+                        <span class="badge">Bangladesh</span>
+                    </div>
+                    <h3>IoT Security Researcher & CTF Competitor</h3>
+                    <span class="role">Inter-University Security Labs & CTFs</span>
+                    <p>Exploring IoT security attack surfaces alongside Capture The Flag competitions—assessing smart device communication, default credentials, network exposure, and practical hardening.</p>
+                    <ul class="bullet-list">
+                        <li>Audited wireless protocols, MQTT broker configurations, and local network isolation.</li>
+                        <li>Coordinated peer CTF practice sessions spanning Linux, web exploitation, and packet analysis.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="card-top-meta">
+                        <span>2022 – Present</span>
+                        <span class="badge">Birulia, Savar, Dhaka</span>
+                    </div>
+                    <h3>Volunteer Lead & Campus Seminar Coordinator</h3>
+                    <span class="role">Daffodil International University (CSE)</span>
+                    <p>Organized campus seminars, student onboarding programs, and collaborative technical showcases while mentoring junior undergraduates in cybersecurity basics and Linux workflows.</p>
+                    <ul class="bullet-list">
+                        <li>Led volunteer teams managing event coordination, participant support, and hybrid broadcasts.</li>
+                        <li>Mentored fellow students transitioning into ethical hacking fundamentals and awareness volunteering.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates">
+        <div class="section-header">
+            <span class="section-tag">Verified Credentials</span>
+            <h2 class="section-title">Certificates</h2>
+        </div>
+
+        <div class="filter-bar" id="certFilters">
+            <button class="filter-btn active" onclick="filterCerts('All', this)">All</button>
+            <button class="filter-btn" onclick="filterCerts('Cybersecurity', this)">Cybersecurity</button>
+            <button class="filter-btn" onclick="filterCerts('Programming & Linux', this)">Programming & Linux</button>
+        </div>
+
+        <div class="grid" id="certificatesGrid">
+            <div class="card cert-card" data-category="Cybersecurity">
+                <div>
+                    <div class="media-box contain">
+                        <img src="ejpt_b786223b.png" alt="Junior Penetration Tester Certificate" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>2025 · ID: 7384</span>
+                        <span class="badge">Score: 100 / 100</span>
+                    </div>
+                    <h3>Junior Penetration Tester (7 Days Training)</h3>
+                    <span class="role">National Cyber Security Agency & DIU (Dept. of CSE)</span>
+                    <p>Completed intensive 7-day Junior Penetration Tester training achieving a perfect score of 100, certified by the National Cyber Security Agency and DIU Department of CSE (Managed by SICL & TechOptions).</p>
+                </div>
+            </div>
+
+            <div class="card cert-card" data-category="Cybersecurity">
+                <div>
+                    <div class="media-box contain">
+                        <img src="Security_Fundamentals_32439d1c.png" alt="Practical Security Fundamentals" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>08/12/2025 · ID: cert_4rjlktkp</span>
+                        <span class="badge">9 CEU Hours</span>
+                    </div>
+                    <h3>Practical Security Fundamentals</h3>
+                    <span class="role">TCM Security</span>
+                    <p>Comprehensive foundational cybersecurity training instructed by Andrew Bellini covering core security architecture, threat landscapes, defensive controls, and practical risk mitigation.</p>
+                </div>
+            </div>
+
+            <div class="card cert-card" data-category="Programming & Linux">
+                <div>
+                    <div class="media-box contain">
+                        <img src="Programming_100_00b3593a.png" alt="Programming 100" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>08/12/2025 · ID: cert_c243px0b</span>
+                        <span class="badge">3 CEU Hours</span>
+                    </div>
+                    <h3>Programming 100: Fundamentals</h3>
+                    <span class="role">TCM Security</span>
+                    <p>Core programming principles and scripting fundamentals for cybersecurity workflows, certified by TCM Security (Heath Maverick Adams, Founder & CEO).</p>
+                </div>
+            </div>
+
+            <div class="card cert-card" data-category="Programming & Linux">
+                <div>
+                    <div class="media-box contain">
+                        <img src="linux_ad9fd262.png" alt="Linux 100" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>20/11/2025 · ID: cert_h77n7cm9</span>
+                        <span class="badge">2 CEU Hours</span>
+                    </div>
+                    <h3>Linux 100: Fundamentals</h3>
+                    <span class="role">TCM Security</span>
+                    <p>Essential Linux administration, file system navigation, permissions, and command-line operations for security practitioners, certified by TCM Security.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-header">
+            <span class="section-tag">Engineering & Security Builds</span>
+            <h2 class="section-title">Projects</h2>
+        </div>
+
+        <div class="filter-bar" id="projectFilters">
+            <button class="filter-btn active" onclick="filterProjects('All', this)">All</button>
+            <button class="filter-btn" onclick="filterProjects('Robo Soccer', this)">Robo Soccer</button>
+            <button class="filter-btn" onclick="filterProjects('IoT Security', this)">IoT Security</button>
+            <button class="filter-btn" onclick="filterProjects('Cybersecurity & Awareness', this)">Cybersecurity & Awareness</button>
+        </div>
+
+        <div class="grid">
+            <div class="card project-card" data-category="Robo Soccer">
+                <div>
+                    <div class="media-box">
+                        <img src="project_robo_soccer_1795352785256.jpg" alt="Robo Soccer Bot" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>2026</span>
+                        <span class="badge">Robo Soccer</span>
+                    </div>
+                    <h3>Competitive Robo Soccer Bot & Drive Control System</h3>
+                    <p>Recent hands-on robotics build engineered for university Robo Soccer arenas, featuring agile omnidirectional movement, high-torque drive tuning, and low-latency wireless control.</p>
+                    <ul class="bullet-list">
+                        <li>Achieved smooth multi-directional strafing and tight turn radius on tournament pitch surfaces.</li>
+                        <li>Continuously refining ball-control mechanics, traction balance, and signal reliability.</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Robo Soccer</span>
+                        <span class="tech-tag">Mecanum Drive</span>
+                        <span class="tech-tag">Motor Control / PWM</span>
+                        <span class="tech-tag">Wireless Telemetry</span>
+                    </div>
+                </div>
+                <a href="#contact" class="org-link"><i class="fas fa-comments"></i> Discuss Robotics Build</a>
+            </div>
+
+            <div class="card project-card" data-category="IoT Security">
+                <div>
+                    <div class="media-box">
+                        <img src="project_iot_hardware_1795351575659.jpg" alt="IoT Security Lab" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>2025</span>
+                        <span class="badge">IoT Security</span>
+                    </div>
+                    <h3>IoT Security & Wireless Device Assessment Lab</h3>
+                    <p>Dedicated IoT security testing environment built to identify common connected-device vulnerabilities—including unencrypted MQTT traffic, weak authentication, and insecure Wi-Fi provisioning.</p>
+                    <ul class="bullet-list">
+                        <li>Demonstrated unencrypted IoT telemetry interception and mitigation via TLS + VLAN segmentation.</li>
+                        <li>Created practical IoT security hygiene checklists shared during campus workshops.</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">IoT Security</span>
+                        <span class="tech-tag">MQTT / TLS Auditing</span>
+                        <span class="tech-tag">Wireshark</span>
+                        <span class="tech-tag">Nmap</span>
+                    </div>
+                </div>
+                <a href="#contact" class="org-link"><i class="fas fa-shield"></i> Request IoT Security Brief</a>
+            </div>
+
+            <div class="card project-card" data-category="Cybersecurity & Awareness">
+                <div>
+                    <div class="media-box">
+                        <img src="project_web_platform_1795351573779.jpg" alt="Cyber Sinon Hub" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>2025</span>
+                        <span class="badge">Cybersecurity & Awareness</span>
+                    </div>
+                    <h3>Cyber Sinon Awareness & Practical Defense Hub</h3>
+                    <p>Official platform for Cyber Sinon (cybersinon.org) advancing 100% practical cybersecurity awareness, student cyber hygiene bootcamps, and campus digital safety seminars across Bangladesh.</p>
+                    <ul class="bullet-list">
+                        <li>Serves as the central hub for Dhaka-based and hybrid awareness missions across Bangladesh.</li>
+                        <li>Streamlined campus seminar partnerships, student outreach signups, and cyber hygiene guidance.</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Cybersecurity Awareness</span>
+                        <span class="tech-tag">Cyber Hygiene</span>
+                        <span class="tech-tag">OWASP Defense</span>
+                        <span class="tech-tag">cybersinon.org</span>
+                    </div>
+                </div>
+                <a href="https://cybersinon.org" target="_blank" rel="noopener noreferrer" class="org-link"><i class="fas fa-globe"></i> Visit cybersinon.org</a>
+            </div>
+
+            <div class="card project-card" data-category="Cybersecurity & Awareness">
+                <div>
+                    <div class="media-box">
+                        <img src="project_cyber_lab_1795351573839.jpg" alt="Penetration Testing & CTF Lab" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>2025</span>
+                        <span class="badge">Cybersecurity & Awareness</span>
+                    </div>
+                    <h3>Virtualized Penetration Testing & CTF Practice Lab</h3>
+                    <p>Isolated offensive-and-defensive lab environment for ethical hacking drills, OWASP web vulnerability verification, packet forensics, and inter-university CTF preparation.</p>
+                    <ul class="bullet-list">
+                        <li>Applied skills from Junior Penetration Tester (Score 100/100) and Practical Security Fundamentals.</li>
+                        <li>Compiled repeatable enumeration and defensive remediation playbooks for student study groups.</li>
+                    </ul>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Kali Linux</span>
+                        <span class="tech-tag">Burp Suite</span>
+                        <span class="tech-tag">Wireshark</span>
+                        <span class="tech-tag">Python</span>
+                    </div>
+                </div>
+                <a href="https://cybersinon.org" target="_blank" rel="noopener noreferrer" class="org-link"><i class="fas fa-arrow-up-right-from-square"></i> Explore Cyber Sinon</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery & Events Section -->
+    <section id="gallery">
+        <div class="section-header">
+            <span class="section-tag">Highlights & Field Moments</span>
+            <h2 class="section-title">Event Gallery</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <div class="media-box">
+                        <img src="book_with_head_sir_6166455b.jpg" alt="Book Presentation at DIU" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>Knowledge Tower, DIU, Dhaka · 2026</span>
+                        <span class="badge">Book Showcase</span>
+                    </div>
+                    <h3>Book Presentation at Dept. of CSE, DIU</h3>
+                    <p>Presenting Cyber Aid: Protecting Humanity to Professor Dr. Sheak Rashed Haider Noori, Head of the Department of Computer Science and Engineering (CSE) at Daffodil International University (DIU).</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="media-box">
+                        <img src="Book_6dd71a80.jpg" alt="Cybersecurity Awareness Seminar" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>Dhaka, Bangladesh · 2026</span>
+                        <span class="badge">Awareness & Seminars</span>
+                    </div>
+                    <h3>Cybersecurity Awareness Seminar & Book Showcase</h3>
+                    <p>Sharing Cyber Aid: Protecting Humanity with university students during an interactive digital safety and cyber hygiene seminar.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <div class="media-box">
+                        <img src="project_robo_soccer_1795352785256.jpg" alt="Robo Soccer Practice" onerror="this.parentElement.style.display='none'">
+                    </div>
+                    <div class="card-top-meta">
+                        <span>Daffodil Smart City, Dhaka · 2026</span>
+                        <span class="badge">Robo Soccer</span>
+                    </div>
+                    <h3>Robo Soccer Prototype & Arena Practice Session</h3>
+                    <p>Testing omnidirectional mecanum drive kinematics and ball-control agility for competitive university Robo Soccer tournaments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="section-header">
+            <span class="section-tag">Technical Matrix</span>
+            <h2 class="section-title">Skills & Capabilities</h2>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div>
+                    <h3>Cybersecurity Awareness & Ethical Hacking</h3>
+                    <span class="role">Digital hygiene, practical defense & CTF</span>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Cybersecurity Awareness</span>
+                        <span class="tech-tag">Student Cyber Hygiene</span>
+                        <span class="tech-tag">Junior Penetration Testing</span>
+                        <span class="tech-tag">Ethical Hacking</span>
+                        <span class="tech-tag">CTF Competitions</span>
+                        <span class="tech-tag">Phishing Defense</span>
+                        <span class="tech-tag">OWASP Web Defense</span>
+                        <span class="tech-tag">Incident Response Basics</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>IoT Security</h3>
+                    <span class="role">Connected device auditing & hardening</span>
+                    <div class="tech-tags">
+                        <span class="tech-tag">IoT Device Security</span>
+                        <span class="tech-tag">Wireless & Wi-Fi Security</span>
+                        <span class="tech-tag">MQTT / TLS Traffic Auditing</span>
+                        <span class="tech-tag">Network Segmentation & VLANs</span>
+                        <span class="tech-tag">Smart Device Threat Modeling</span>
+                        <span class="tech-tag">Default Credential Auditing</span>
+                        <span class="tech-tag">UART Security Awareness</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Robo Soccer & Applied Robotics</h3>
+                    <span class="role">Recent competition robotics work</span>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Robo Soccer Bot Design</span>
+                        <span class="tech-tag">Mecanum / Omni Drive Control</span>
+                        <span class="tech-tag">Motor Driver & PWM Tuning</span>
+                        <span class="tech-tag">Low-Latency Wireless Control</span>
+                        <span class="tech-tag">Chassis Calibration</span>
+                        <span class="tech-tag">Power Management</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div>
+                    <h3>Programming, Linux & Security Tools</h3>
+                    <span class="role">Core scripting & daily security stack</span>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Linux Fundamentals & CLI</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">C / C++</span>
+                        <span class="tech-tag">Bash Scripting</span>
+                        <span class="tech-tag">Kali Linux</span>
+                        <span class="tech-tag">Burp Suite</span>
+                        <span class="tech-tag">Wireshark</span>
+                        <span class="tech-tag">Nmap</span>
+                        <span class="tech-tag">Git & GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-header">
+            <span class="section-tag">Connect</span>
+            <h2 class="section-title">Contact</h2>
+        </div>
+        <div class="contact-box">
+            <h3>Let's Collaborate</h3>
+            <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                Open to cybersecurity awareness seminars, campus workshops, IoT security discussions, Robo Soccer collaborations, and community leadership.
+            </p>
+            <p style="margin-top: 1.1rem; font-weight: 600; color: var(--accent);">
+                <i class="fas fa-envelope"></i> ahsanemon1710@gmail.com
+            </p>
+            <div class="social-links">
+                <a href="https://cybersinon.org" target="_blank" rel="noopener noreferrer" title="Cyber Sinon"><i class="fas fa-globe"></i></a>
+                <a href="https://linkedin.com/in/md-ahsan-kadir-emon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ahsanemon" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:ahsanemon1710@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 MD Ahsan Kadir Emon. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function filterCerts(category, btn) {
+            document.querySelectorAll('#certFilters .filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.cert-card').forEach(card => {
+                card.style.display = (category === 'All' || card.dataset.category === category) ? 'flex' : 'none';
+            });
+        }
+
+        function filterProjects(category, btn) {
+            document.querySelectorAll('#projectFilters .filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.style.display = (category === 'All' || card.dataset.category === category) ? 'flex' : 'none';
+            });
+        }
+    </script>
+
+</body>
+</html>
