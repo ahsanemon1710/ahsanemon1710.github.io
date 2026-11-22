@@ -10,14 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-primary: #050913;
-            --bg-secondary: #0b1222;
-            --card-bg: rgba(14, 23, 41, 0.84);
-            --card-hover: rgba(20, 32, 56, 0.94);
+            --bg-primary: #030712;
+            --bg-secondary: #0a101f;
+            --card-bg: rgba(13, 21, 38, 0.78);
+            --card-hover: rgba(19, 31, 56, 0.92);
             --accent: #00d2ff;
             --accent-secondary: #38bdf8;
             --accent-purple: #818cf8;
-            --accent-glow: rgba(0, 210, 255, 0.25);
+            --accent-teal: #2dd4bf;
+            --accent-glow: rgba(0, 210, 255, 0.28);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --border-color: rgba(148, 163, 184, 0.16);
@@ -38,12 +39,13 @@
             position: relative;
             overflow-x: hidden;
             background-image:
-                radial-gradient(ellipse 65% 45% at 15% 10%, rgba(0, 210, 255, 0.14), transparent 65%),
-                radial-gradient(ellipse 55% 40% at 88% 18%, rgba(129, 140, 248, 0.12), transparent 65%),
-                radial-gradient(ellipse 60% 45% at 50% 88%, rgba(56, 189, 248, 0.09), transparent 70%),
-                linear-gradient(to right, rgba(148, 163, 184, 0.045) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(148, 163, 184, 0.045) 1px, transparent 1px);
-            background-size: auto, auto, auto, 44px 44px, 44px 44px;
+                radial-gradient(ellipse 60% 45% at 15% 12%, rgba(0, 210, 255, 0.16), transparent 65%),
+                radial-gradient(ellipse 55% 45% at 85% 22%, rgba(129, 140, 248, 0.14), transparent 65%),
+                radial-gradient(ellipse 50% 40% at 20% 75%, rgba(45, 212, 191, 0.09), transparent 65%),
+                radial-gradient(ellipse 65% 45% at 80% 88%, rgba(56, 189, 248, 0.11), transparent 70%),
+                linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+            background-size: auto, auto, auto, auto, 42px 42px, 42px 42px;
             background-attachment: fixed;
         }
 
@@ -52,7 +54,7 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
-            background: radial-gradient(circle at 50% 28%, rgba(0, 210, 255, 0.06), transparent 55%);
+            background: radial-gradient(circle at 50% 24%, rgba(0, 210, 255, 0.08), transparent 55%);
             z-index: -1;
         }
 
@@ -61,15 +63,15 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(5, 9, 19, 0.82);
-            backdrop-filter: blur(16px);
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(18px);
             padding: 1rem 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
         }
 
         .logo {
@@ -128,12 +130,12 @@
             padding: 0.42rem 1.05rem;
             border-radius: 999px;
             background: rgba(0, 210, 255, 0.11);
-            border: 1px solid rgba(0, 210, 255, 0.32);
+            border: 1px solid rgba(0, 210, 255, 0.34);
             color: var(--accent);
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+            box-shadow: 0 0 24px rgba(0, 210, 255, 0.14);
         }
 
         .profile-img {
@@ -144,7 +146,7 @@
             border: 3px solid var(--accent);
             margin: 0 auto 1.4rem;
             display: block;
-            box-shadow: 0 0 38px var(--accent-glow), 0 0 0 8px rgba(0, 210, 255, 0.08);
+            box-shadow: 0 0 42px var(--accent-glow), 0 0 0 8px rgba(0, 210, 255, 0.08);
         }
 
         .hero h1 {
@@ -152,6 +154,9 @@
             font-weight: 800;
             letter-spacing: -0.02em;
             margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 35%, #bae6fd 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero .subtitle {
@@ -201,7 +206,7 @@
 
         .btn-primary {
             background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
-            color: #050912;
+            color: #030712;
         }
 
         .btn-primary:hover {
@@ -210,13 +215,13 @@
         }
 
         .btn-outline {
-            background: rgba(14, 23, 41, 0.65);
+            background: rgba(13, 21, 38, 0.7);
             border: 1px solid rgba(0, 210, 255, 0.45);
             color: var(--accent);
         }
 
         .btn-outline:hover {
-            background: rgba(0, 210, 255, 0.12);
+            background: rgba(0, 210, 255, 0.14);
             transform: translateY(-2px);
         }
 
@@ -267,22 +272,22 @@
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
             border: 1px solid var(--border-color);
             border-radius: 14px;
-            padding: 1.75rem;
+            padding: 1.85rem;
             transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: rgba(0, 210, 255, 0.48);
+            border-color: rgba(0, 210, 255, 0.5);
             background: var(--card-hover);
-            box-shadow: 0 16px 36px rgba(0, 210, 255, 0.1);
+            box-shadow: 0 18px 40px rgba(0, 210, 255, 0.12);
         }
 
         .card-top-meta {
@@ -290,18 +295,32 @@
             justify-content: space-between;
             align-items: center;
             gap: 0.5rem;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.85rem;
             font-size: 0.82rem;
             color: var(--text-secondary);
         }
 
         .badge {
-            padding: 0.25rem 0.7rem;
+            padding: 0.25rem 0.72rem;
             border-radius: 999px;
             background: rgba(0, 210, 255, 0.12);
             color: var(--accent);
             font-weight: 600;
             font-size: 0.78rem;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(0, 210, 255, 0.1);
+            border: 1px solid rgba(0, 210, 255, 0.25);
+            color: var(--accent);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
         }
 
         .card h3 {
@@ -322,7 +341,7 @@
         .card p {
             color: var(--text-secondary);
             font-size: 0.94rem;
-            margin-bottom: 1.15rem;
+            margin-bottom: 0.5rem;
         }
 
         .org-link {
@@ -334,6 +353,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             padding: 0.55rem 1rem;
+            margin-top: 0.75rem;
             background: rgba(0, 210, 255, 0.08);
             border-radius: 8px;
             border: 1px solid rgba(0, 210, 255, 0.28);
@@ -343,47 +363,14 @@
 
         .org-link:hover {
             background: var(--accent);
-            color: #050912;
+            color: #030712;
         }
 
-        /* Experience Photos */
-        .exp-photo-box {
-            margin-bottom: 1.15rem;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: #0b1220;
-            aspect-ratio: 16 / 9;
-        }
-
-        .exp-photo-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* Certificates Segment */
-        .cert-preview {
-            margin-bottom: 1.15rem;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: #0b1220;
-            aspect-ratio: 16 / 10;
-        }
-
-        .cert-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
+        /* Certificates Upload Panel */
         .upload-panel {
             margin-top: 2.5rem;
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
             border: 1px dashed rgba(0, 210, 255, 0.45);
             border-radius: 14px;
             padding: 1.75rem;
@@ -406,18 +393,18 @@
         }
 
         .upload-controls input[type="text"] {
-            background: #09101d;
+            background: #070d19;
             border: 1px solid var(--border-color);
             color: var(--text-primary);
             padding: 0.72rem 1rem;
             border-radius: 8px;
             font-size: 0.92rem;
-            min-width: 220px;
+            min-width: 240px;
         }
 
-        .upload-controls input[type="file"] {
-            color: var(--text-secondary);
-            font-size: 0.88rem;
+        .upload-controls input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
         }
 
         .upload-note {
@@ -455,14 +442,14 @@
         /* Contact & Footer */
         .contact-box {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(14px);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 2.5rem;
             text-align: center;
             max-width: 720px;
             margin: 0 auto;
-            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.35);
         }
 
         .social-links {
@@ -487,7 +474,7 @@
             text-align: center;
             padding: 2rem 6%;
             border-top: 1px solid var(--border-color);
-            background: rgba(5, 9, 19, 0.72);
+            background: rgba(3, 7, 18, 0.78);
             color: var(--text-secondary);
             font-size: 0.9rem;
             margin-top: 3rem;
@@ -591,14 +578,11 @@
         <div class="grid">
             <div class="card">
                 <div>
-                    <div class="exp-photo-box">
-                        <!-- রিপোজিটরিতে volunteer-1.jpg নামে ছবি আপলোড করলে এখানে দেখাবে -->
-                        <img src="volunteer-1.jpg" alt="Cyber Sinon Awareness & Volunteer Session" onerror="this.src='profile.jpg'">
-                    </div>
                     <div class="card-top-meta">
                         <span>Volunteer Leadership</span>
                         <span class="badge">Awareness</span>
                     </div>
+                    <div class="card-icon"><i class="fas fa-shield-virus"></i></div>
                     <h3>Cybersecurity Awareness & Training</h3>
                     <span class="role">Volunteer Lead & Instructor — Cyber Sinon</span>
                     <p>
@@ -609,14 +593,11 @@
 
             <div class="card">
                 <div>
-                    <div class="exp-photo-box">
-                        <!-- রিপোজিটরিতে volunteer-2.jpg নামে ছবি আপলোড করলে এখানে দেখাবে -->
-                        <img src="volunteer-2.jpg" alt="Tech Fest & Event Volunteering" onerror="this.src='profile.jpg'">
-                    </div>
                     <div class="card-top-meta">
                         <span>Event & Tech Volunteering</span>
                         <span class="badge">Operations</span>
                     </div>
+                    <div class="card-icon"><i class="fas fa-calendar-check"></i></div>
                     <h3>Tech Fests, Bootcamps & Competitions</h3>
                     <span class="role">Volunteer & Event Coordinator</span>
                     <p>
@@ -627,14 +608,11 @@
 
             <div class="card">
                 <div>
-                    <div class="exp-photo-box">
-                        <!-- রিপোজিটরিতে volunteer-3.jpg নামে ছবি আপলোড করলে এখানে দেখাবে -->
-                        <img src="volunteer-3.jpg" alt="Community & Mentorship Volunteering" onerror="this.src='profile.jpg'">
-                    </div>
                     <div class="card-top-meta">
                         <span>Community & Mentorship</span>
                         <span class="badge">Outreach</span>
                     </div>
+                    <div class="card-icon"><i class="fas fa-microchip"></i></div>
                     <h3>Student Mentorship & Hardware Labs</h3>
                     <span class="role">Peer Mentor & Technical Volunteer</span>
                     <p>
@@ -655,14 +633,11 @@
         <div class="grid" id="certificatesGrid">
             <div class="card">
                 <div>
-                    <div class="cert-preview">
-                        <!-- রিপোজিটরিতে cert-ejpt.jpg নামে সার্টিফিকেটের ছবি আপলোড করলে দেখাবে -->
-                        <img src="cert-ejpt.jpg" alt="eJPT Certificate" onerror="this.src='profile.jpg'">
-                    </div>
                     <div class="card-top-meta">
                         <span>Penetration Testing</span>
                         <span class="badge">Verified</span>
                     </div>
+                    <div class="card-icon"><i class="fas fa-user-secret"></i></div>
                     <h3>eJPT Certification</h3>
                     <span class="role">Junior Penetration Tester</span>
                     <p>
@@ -673,14 +648,11 @@
 
             <div class="card">
                 <div>
-                    <div class="cert-preview">
-                        <!-- রিপোজিটরিতে cert-ctf.jpg নামে সার্টিফিকেটের ছবি আপলোড করলে দেখাবে -->
-                        <img src="cert-ctf.jpg" alt="CTF Competition Certificate" onerror="this.src='profile.jpg'">
-                    </div>
                     <div class="card-top-meta">
                         <span>Cybersecurity Competition</span>
                         <span class="badge">4th Place</span>
                     </div>
+                    <div class="card-icon"><i class="fas fa-trophy"></i></div>
                     <h3>Capture The Flag (CTF) Recognition</h3>
                     <span class="role">Competitive Cybersecurity</span>
                     <p>
@@ -691,14 +663,11 @@
 
             <div class="card">
                 <div>
-                    <div class="cert-preview">
-                        <!-- রিপোজিটরিতে cert-training.jpg নামে সার্টিফিকেটের ছবি আপলোড করলে দেখাবে -->
-                        <img src="cert-training.jpg" alt="National Training & Workshop Certificate" onerror="this.src='profile.jpg'">
-                    </div>
                     <div class="card-top-meta">
                         <span>Training & Workshops</span>
                         <span class="badge">Completed</span>
                     </div>
+                    <div class="card-icon"><i class="fas fa-certificate"></i></div>
                     <h3>National Cybersecurity & Tech Programs</h3>
                     <span class="role">Training & Bootcamp Completion</span>
                     <p>
@@ -708,25 +677,25 @@
             </div>
         </div>
 
-        <!-- Instant Certificate Preview & Upload Segment -->
+        <!-- Add Certificate Segment -->
         <div class="upload-panel">
             <div class="upload-panel-header">
                 <div>
-                    <h3><i class="fas fa-file-circle-plus" style="color: var(--accent);"></i> Add / Preview Certificate</h3>
+                    <h3><i class="fas fa-plus-circle" style="color: var(--accent);"></i> Add New Certificate Entry</h3>
                     <p style="color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem;">
-                        Select a certificate image from your device to view it in this segment right away.
+                        Quickly add a new certificate or achievement card to this section.
                     </p>
                 </div>
             </div>
             <div class="upload-controls">
-                <input type="text" id="certTitleInput" placeholder="Certificate Title (e.g., eJPT / Workshop)">
-                <input type="file" id="certFileInput" accept="image/*">
+                <input type="text" id="certTitleInput" placeholder="Certificate Title (e.g., OSINT Bootcamp)">
+                <input type="text" id="certOrgInput" placeholder="Issuer / Role (e.g., DIU Cyber Security Club)">
                 <button type="button" class="btn btn-primary" onclick="addCertificateCard()">
                     <i class="fas fa-plus"></i> Add Certificate
                 </button>
             </div>
             <p class="upload-note">
-                Tip: For permanent public display on GitHub Pages for all visitors, upload your certificate images (such as <code>cert-ejpt.jpg</code>) directly to your repository and commit them.
+                To keep new certificates permanently saved for all visitors, you can copy-paste a card block inside <code>#certificatesGrid</code> in <code>index.html</code>.
             </p>
         </div>
     </section>
@@ -806,56 +775,3 @@
             </p>
             <div class="social-links">
                 <a href="https://cybersinon.org" target="_blank" rel="noopener noreferrer" title="Cyber Sinon"><i class="fas fa-globe"></i></a>
-                <a href="https://www.linkedin.com/in/md-ahsan-kadir-emon-b08260368" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/ahsanemon1710" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                <a href="mailto:ahsanemon1710@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 MD Ahsan Kadir Emon. All Rights Reserved.</p>
-    </footer>
-
-    <script>
-        function addCertificateCard() {
-            const titleInput = document.getElementById('certTitleInput');
-            const fileInput = document.getElementById('certFileInput');
-            const grid = document.getElementById('certificatesGrid');
-
-            const title = titleInput.value.trim() || 'Uploaded Certificate';
-            const file = fileInput.files[0];
-
-            if (!file) {
-                alert('Please select a certificate image first.');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <div>
-                        <div class="cert-preview">
-                            <img src="${e.target.result}" alt="${title}">
-                        </div>
-                        <div class="card-top-meta">
-                            <span>Certificate</span>
-                            <span class="badge">Added</span>
-                        </div>
-                        <h3>${title}</h3>
-                        <span class="role">Verified Achievement</span>
-                        <p>Added to showcase certification, training, or event recognition.</p>
-                    </div>
-                `;
-                grid.appendChild(card);
-                titleInput.value = '';
-                fileInput.value = '';
-            };
-            reader.readAsDataURL(file);
-        }
-    </script>
-
-</body>
-</html>
